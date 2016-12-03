@@ -2,7 +2,7 @@
 #
 # Toggles the GitHub remote origin from HTTPS to SSH and vice versa.
 #
-if [ ! $(command -v git) ]; then
+if [[ ! $(command -v git) ]]; then
   echo "Git is not installed."
   exit 1
 fi
@@ -25,8 +25,9 @@ for REMOTE in $REMOTES; do
       exit 0
     fi
     # If using SSH, switch to HTTPS.
-    REPO=$(echo $REMOTE | cut -d':' -f2 | cut -d' ' -f1)
-    if [[ "$REPO" != "" ]]; then
+    REPO=$(echo $REMOTE | cut -d'@' -f2 | cut -d':' -f1)
+    if [[ $REPO == 'github.com' ]]; then
+      REPO=$(echo $REMOTE | cut -d':' -f2 | cut -d' ' -f1)
       git remote rm origin
       git remote add origin https://github.com/$REPO
       git remote -v
