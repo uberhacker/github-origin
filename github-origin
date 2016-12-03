@@ -27,9 +27,9 @@ for REMOTE in $REMOTES; do
     # If using SSH, switch to HTTPS.
     REPO=$(echo $REMOTE | cut -d'@' -f2 | cut -d':' -f1)
     if [[ $REPO == 'github.com' ]]; then
-      REPO=$(echo $REMOTE | cut -d':' -f2 | cut -d' ' -f1)
+      PROJECT=$(echo $REMOTE | cut -d':' -f2 | cut -d' ' -f1)
       git remote rm origin
-      git remote add origin https://github.com/$REPO
+      git remote add origin https://github.com/$PROJECT
       git remote -v
       exit 0
     fi
