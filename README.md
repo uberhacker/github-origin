@@ -10,5 +10,6 @@ $ sudo cp github-origin /usr/local/bin
 ```
 ## Usage
 ```
+$ cd /path/to/github/repo
 $ github-origin
 ```
